@@ -10,9 +10,19 @@
               append="false">
             <PatternLayout pattern="%d{ISO8601}{${timezone}} [%p] %c{1}[%t]: %m%n"/>
         </File>
+
+        <File name="rest_messages"
+              fileName="logs/api-messages.log"
+              append="false">
+            <PatternLayout pattern="%d{ISO8601}{${timezone}} [%t]: %m%n"/>
+        </File>
     </Appenders>
 
     <Loggers>
+        <Logger name="io.restassured.messages" level="debug" additivity="false">
+            <!-- Failed Requests & Responses will be logged by rest assured -->
+            <AppenderRef ref="rest_messages"/>
+        </Logger>
 
         <Root level="debug">
             <AppenderRef ref="console" level="info"/>
