@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="com.homework.testng.TestStatusPrinter"/>
     </listeners>
-    <test name="All tests" preserve-order="false">
+    <test name="All tests" preserve-order="false" parallel="classes" thread-count="8">
         <packages>
             <package name="com.homework.suite.*"/>
         </packages>

@@ -12,16 +12,15 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class FindDuplicatesTest extends AbstractSentenceTest {
+public class DefaultParameterValueTest extends AbstractSentenceTest {
 
-    @Test(dataProviderClass = DuplicatesDataProvider.class, dataProvider = "getSentencesWithDuplicates")
-    public void testSentenceServiceCanFindDuplicates(TestData data) {
-        Response response = sentenceClient.getDuplicates(data.getText());
+    @Test
+    public void testSentenceServiceCanHandleMissingQueryParameter() {
+        Response response = sentenceClient.getDuplicates(null);
         ResponseChecker.assertStatusCode(response, HttpStatus.SC_OK);
         List<String> actualDuplicates = response.jsonPath().getList("$", String.class);
         assertThat(actualDuplicates)
-                .as("Check service can find duplicates")
-                .containsExactlyInAnyOrderElementsOf(data.getDuplicates());
+                .as("Check empty response for missing parameter")
+                .isEmpty();
     }
-
 }
