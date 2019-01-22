@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%p] %c{1} - %m%n"/>
+        </Console>
+
+        <File name="mainfile"
+              fileName="logs/test.log"
+              append="false">
+            <PatternLayout pattern="%d{ISO8601}{${timezone}} [%p] %c{1}[%t]: %m%n"/>
+        </File>
+    </Appenders>
+
+    <Loggers>
+
+        <Root level="debug">
+            <AppenderRef ref="console" level="info"/>
+            <AppenderRef ref="mainfile"/>
+        </Root>
+    </Loggers>
+</Configuration>
